@@ -101,7 +101,7 @@
   var CONFIG = {
     root: '/',
     scheme: 'Mist',
-    sidebar: {"position":"left","display":"post"},
+    sidebar: {"position":"left","display":"always"},
     fancybox: true,
     motion: true,
     duoshuo: {
@@ -351,64 +351,17 @@
 
       
         
-          
-            <h2 id="promise是什么"><a href="#promise是什么" class="headerlink" title="promise是什么"></a>promise是什么</h2><blockquote>
+          <h2 id="promise是什么"><a href="#promise是什么" class="headerlink" title="promise是什么"></a>promise是什么</h2><blockquote>
 <p>Talk is cheap,show me the code.</p>
 </blockquote>
 <p>先上一段经典的promise使用代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">const promise = new Promise(function(resolve, reject)&#123;</div><div class="line">    //do some async </div><div class="line">    ...</div><div class="line">    if (success) &#123;</div><div class="line">        resolve()</div><div class="line">    &#125; else &#123;</div><div class="line">        reject()</div><div class="line">    &#125;</div><div class="line">    ...</div><div class="line">&#125;)</div><div class="line"></div><div class="line">promise.then((value) =&gt; &#123;</div><div class="line">    //do success things</div><div class="line">&#125;,(error) =&gt; &#123;</div><div class="line">    //do error things</div><div class="line">&#125;)</div></pre></td></tr></table></figure></p>
-<p><strong>promise</strong> 就是一种以同步方式来解决异步回调地狱问题的解决方案。一个Promise对象代表的是一个异步操作（当然你也可以操作一个同步操作，但是promise的内部实现保证这样的结果依然是异步执行的），它有三种状态：<code>Pending(进行中)</code>、<code>Resolved(已完成)</code>、<code>Rejected(已失败)</code>，三种状态的关系如下图：</p>
-<p><img src="http://p1.bqimg.com/567571/d3269ecb43e7b8f6.png" alt="image"></p>
-<p>可以看出，一个promise执行时<strong>状态不可逆的</strong>，一旦开始执行，结果有且只有两种可能：</p>
-<ul>
-<li>初始化 =&gt; 成功 执行resolve()</li>
-<li>初始化 =&gt; 失败 执行reject()</li>
-</ul>
-<p><strong>状态转换后，这个promise对象的状态就不会再发生任何的变化</strong>，换言之<code>.then</code>方法内的方法只会被调用一次</p>
-<h2 id="创建一个promise"><a href="#创建一个promise" class="headerlink" title="创建一个promise"></a>创建一个promise</h2><ul>
-<li>const propmiseFn = new Promise (fn)</li>
-<li>const propmiseFn = Promise.resolve(value)</li>
-<li>const propmiseFn = Promise.reject(value)</li>
-</ul>
-<p>后两种方法相当于 <code>new Promise()</code> 的快捷方式，拿第二种方法举例，比如<code>Promise.resolve(&#39;some resul&#39;)</code> 可以认为是以下代码的语法糖<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">new Promise(function(resolve)&#123;</div><div class="line">    resolve(&apos;some resul&apos;);</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
-<p><code>resolve(&#39;some resul&#39;)</code>会让这个promise对象<strong>立即进入resolved状态</strong>，并将<code>some result</code>传递给后面then里指定的<code>onFulfilled</code>函数</p>
-<h2 id="基本API"><a href="#基本API" class="headerlink" title="基本API"></a>基本API</h2><p>Promises/A+ 标准实际上只是定义了关于<code>Promise#then</code>的规范，这里讨论的是<strong>ES6 Promise</strong>标准，它在Promises/A+的基础上又扩展了一些方法，具体如下：</p>
-<ul>
-<li>Promise.reolve()</li>
-<li>Promise.reject()</li>
-<li>Promises.prototype.then()</li>
-<li><p>Promises.prototype.catch()</p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">promise.catch(onRejected) </div><div class="line">//等价于</div><div class="line">promise.then(null, onRejected)</div></pre></td></tr></table></figure>
-</li>
-<li><p>Promises.all() </p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">const p1 = Promise.resolve(1)</div><div class="line">const p2 = Promise.resolve(2)</div><div class="line">const p3 = Promise.resolve(3)</div><div class="line">    </div><div class="line">//接受一个由promise对象组成的数组</div><div class="line">const p = Promise.all([p1, p2, p3]) </div><div class="line"></div><div class="line">p.then((value) =&gt; &#123;</div><div class="line">    //直到所有的异步操作全部完成后才返回结果，结果是一个相同顺序的数组</div><div class="line">    console.log(value) // =&gt; [1, 2, 3]</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
-</li>
-<li><p>Promise.race() </p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">//接受一个promise对象数组，执行.then()后返回最先完成的那一个promise的结果</div><div class="line">const p1 = new Promise((resolve, reject) =&gt; &#123; </div><div class="line">    setTimeout(resolve, 500, &quot;one&quot;); </div><div class="line">&#125;);</div><div class="line">const p2 = new Promise((resolve, reject) =&gt; &#123; </div><div class="line">    setTimeout(resolve, 100, &quot;two&quot;); </div><div class="line">&#125;);</div><div class="line"></div><div class="line">Promise.race([p1, p2]).then((value) =&gt; &#123;</div><div class="line">  console.log(value); // =&gt; &quot;two&quot;</div><div class="line">  // Both resolve, but p2 is faster</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
-</li>
-</ul>
-<h2 id="promise-chain"><a href="#promise-chain" class="headerlink" title="promise chain"></a>promise chain</h2><pre><code>在平时实践中，我们会经常用到一种调用方式，那就是`promise chain`, **链式调用promise实例**。
-先来看一段代码：
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">const promise = new Promisefunction(resolve, reject) =&gt; &#123;</div><div class="line">    resolve(&quot;传递给then的值&quot;);</div><div class="line">&#125;);</div><div class="line"></div><div class="line">&lt;!--实现方式1--&gt;</div><div class="line">promise.then((value) =&gt; &#123;</div><div class="line">    console.log(value);</div><div class="line">&#125;,(error) =&gt; &#123;</div><div class="line">    console.error(error);</div><div class="line">&#125;);</div><div class="line">&lt;!--实现方式2--&gt;</div><div class="line">promise.thenfunction (value) =&gt; &#123;</div><div class="line">    console.log(value);</div><div class="line">&#125;).catch((error) =&gt; &#123;</div><div class="line">    console.error(error);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
-
-上面的代码展示了一种使用的技巧，**在.catch()方法内部处理异步的异常情况**，需要注意的是使用`promise.then(onFulfilled, onRejected) `的话在`onFulfilled`中发生异常的话，在 `onRejected` 中是捕获不到这个异常的。在 `promise.then(onFulfilled).catch(onRejected) `的情况下`then` 中产生的异常能在 `.catch` 中捕获，在不同的场合下合理的搭配可以使逻辑更加清晰，代码更利于阅读。
-
-那究竟是什么原理可以支持promise这样去使用呢？
-
-其实关键在于，**不论是.then 还是 .catch 方法执行结束后，会返回一个新的带着当前状态的promise对象**,这样就保证了我们的链式调用，上面的代码的执行过程可以用下图描述：
-
-![image](http://p1.bqimg.com/567571/98e76bd85007b746.png)
-
-我们接着这个思路再往下走，在日常的开发中我们会经常碰到一个场景，将一个函数的处理结果传递给下一个函数进行再处理（其中涉及一条js的最佳实践：保证每一个函数的功能是单一的），那我们可不可以借助`promise chain`来实现呢？ 看下面的代码：
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">const bPromise = new Promise((resolve) =&gt; &#123;</div><div class="line">    resolve(100);</div><div class="line">&#125;);</div><div class="line">bPromise.then((value) =&gt; &#123;</div><div class="line">    return value * 2;</div><div class="line">&#125;).then((value) =&gt; &#123;</div><div class="line">    return value * 2;</div><div class="line">&#125;).then((value) =&gt; &#123;</div><div class="line">    console.log(&quot;value: &quot; + value); // =&gt;  100 * 2 * 2</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
-
-是的，我们只需要在`then()`内部将需要传递下去的数据**return**出去，这样就可以在下一处`then() 或者 catch()`中接收到并继续处理了！
-
-
-[JavaScript Promise迷你书（中文版）](http://liubin.org/promises-book/#chapter4-advanced-promise)
-
-[Javascript 中的神器——Promise ](http://www.jianshu.com/p/063f7e490e9a)
-</code></pre>
-          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/02/10/js-Promise/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -536,13 +489,17 @@
       
         
           
-            <p>call 和 apply 都是为了改变某个函数运行时的 context 即上下文而存在的，换句话说，就是为了改变函数体内部 this 的指向。因为 JavaScript 的函数存在「定义时上下文」和「运行时上下文」以及「上下文是可以改变的」这样的概念。</p>
-<p>二者的作用完全一样，只是接受参数的方式不太一样。例如，有一个函数 func1 定义如下：</p>
-<pre><code>var func1 = function(arg1, arg2) {};
-</code></pre><p>就可以通过 func1.call(this, arg1, arg2); 或者 func1.apply(this, [arg1, arg2]); 来调用。其中 this 是你想指定的上下文，他可以任何一个 JavaScript 对象(JavaScript 中一切皆对象)，call 需要把参数按顺序传递进去，而 apply 则是把参数放在数组里。</p>
-<p>JavaScript 中，某个函数的参数数量是不固定的，因此要说适用条件的话，当你的参数是明确知道数量时，用 call，而不确定的时候，用 apply，然后把参数 push 进数组传递进去。当参数数量不确定时，函数内部也可以通过 arguments 这个数组来便利所有的参数。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">cat</span>(<span class="params"></span>)</span>&#123;</div><div class="line">&#125;</div><div class="line">cat.prototype=&#123;</div><div class="line">    <span class="attr">food</span>:<span class="string">"fish"</span>,</div><div class="line">    <span class="attr">say</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">        alert(<span class="string">"I love "</span>+<span class="keyword">this</span>.food);</div><div class="line">    &#125;,</div><div class="line">    <span class="attr">name</span>: <span class="function"><span class="keyword">function</span>(<span class="params"> name </span>)</span>&#123;</div><div class="line">        <span class="built_in">console</span>.log(<span class="string">'my name is '</span> + name)</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">var</span> blackCat = <span class="keyword">new</span> cat;</div><div class="line">blackCat.say();</div><div class="line">blackCat.name(<span class="string">'miaomiao'</span>)</div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">var</span> whiteDog = &#123;</div><div class="line">	<span class="attr">food</span>:<span class="string">"bone"</span>,</div><div class="line">	<span class="attr">say</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">		blackCat.say.call(<span class="keyword">this</span>)</div><div class="line">	&#125;,</div><div class="line">	<span class="attr">name</span>: <span class="function"><span class="keyword">function</span>(<span class="params"> name </span>)</span>&#123;</div><div class="line">	    blackCat.name.call(<span class="keyword">this</span>, name)</div><div class="line">	    <span class="comment">//blackCat.name.apply(this, [name])</span></div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">whiteDog.say() <span class="comment">//bone</span></div><div class="line">whiteDog.name(<span class="string">'wangwang'</span>)<span class="comment">//wangwang</span></div><div class="line"><span class="comment">//whiteDog中不需要重新定义say方法，直接调用即可</span></div></pre></td></tr></table></figure>
           
+call 和 apply 都是为了改变某个函数运行时的 context 即上下文而存在的，换句话说，就是为了改变函数体内部 this 的指向。因为 JavaScript 的函数存在「定义时上下文」和「运行时上下文」以及「上下文是可以改变的」这样的概念。
+二者的作用完全一样，只是接受参数的方式不太一
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/02/07/The-difference-between-the-call-and-apply/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>

@@ -86,20 +86,20 @@
 
 <meta name="description" content="call 和 apply 都是为了改变某个函数运行时的 context 即上下文而存在的，换句话说，就是为了改变函数体内部 this 的指向。因为 JavaScript 的函数存在「定义时上下文」和「运行时上下文」以及「上下文是可以改变的」这样的概念。
 二者的作用完全一样，只是接受参数的方式不太一样。例如，有一个函数 func1 定义如下：
-var func1 = function(arg1, a">
+var func1 = function(arg1,">
 <meta property="og:type" content="article">
 <meta property="og:title" content="call与apply的区别">
 <meta property="og:url" content="http://quda.me/2017/02/07/The-difference-between-the-call-and-apply/index.html">
 <meta property="og:site_name" content="曲达的博客">
 <meta property="og:description" content="call 和 apply 都是为了改变某个函数运行时的 context 即上下文而存在的，换句话说，就是为了改变函数体内部 this 的指向。因为 JavaScript 的函数存在「定义时上下文」和「运行时上下文」以及「上下文是可以改变的」这样的概念。
 二者的作用完全一样，只是接受参数的方式不太一样。例如，有一个函数 func1 定义如下：
-var func1 = function(arg1, a">
-<meta property="og:updated_time" content="2017-02-07T04:00:05.000Z">
+var func1 = function(arg1,">
+<meta property="og:updated_time" content="2017-02-10T11:54:22.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="call与apply的区别">
 <meta name="twitter:description" content="call 和 apply 都是为了改变某个函数运行时的 context 即上下文而存在的，换句话说，就是为了改变函数体内部 this 的指向。因为 JavaScript 的函数存在「定义时上下文」和「运行时上下文」以及「上下文是可以改变的」这样的概念。
 二者的作用完全一样，只是接受参数的方式不太一样。例如，有一个函数 func1 定义如下：
-var func1 = function(arg1, a">
+var func1 = function(arg1,">
 
 
 
@@ -108,7 +108,7 @@ var func1 = function(arg1, a">
   var CONFIG = {
     root: '/',
     scheme: 'Mist',
-    sidebar: {"position":"left","display":"post"},
+    sidebar: {"position":"left","display":"always"},
     fancybox: true,
     motion: true,
     duoshuo: {
@@ -352,7 +352,8 @@ var func1 = function(arg1, a">
       
 
       
-        <p>call 和 apply 都是为了改变某个函数运行时的 context 即上下文而存在的，换句话说，就是为了改变函数体内部 this 的指向。因为 JavaScript 的函数存在「定义时上下文」和「运行时上下文」以及「上下文是可以改变的」这样的概念。</p>
+        <a id="more"></a>
+<p>call 和 apply 都是为了改变某个函数运行时的 context 即上下文而存在的，换句话说，就是为了改变函数体内部 this 的指向。因为 JavaScript 的函数存在「定义时上下文」和「运行时上下文」以及「上下文是可以改变的」这样的概念。</p>
 <p>二者的作用完全一样，只是接受参数的方式不太一样。例如，有一个函数 func1 定义如下：</p>
 <pre><code>var func1 = function(arg1, arg2) {};
 </code></pre><p>就可以通过 func1.call(this, arg1, arg2); 或者 func1.apply(this, [arg1, arg2]); 来调用。其中 this 是你想指定的上下文，他可以任何一个 JavaScript 对象(JavaScript 中一切皆对象)，call 需要把参数按顺序传递进去，而 apply 则是把参数放在数组里。</p>
@@ -413,6 +414,29 @@ var func1 = function(arg1, a">
 
 
     <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
       
     </div>
   </div>
