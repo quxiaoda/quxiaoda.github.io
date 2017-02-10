@@ -386,8 +386,7 @@
   <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">//接受一个promise对象数组，执行.then()后返回最先完成的那一个promise的结果</div><div class="line">const p1 = new Promise((resolve, reject) =&gt; &#123; </div><div class="line">    setTimeout(resolve, 500, &quot;one&quot;); </div><div class="line">&#125;);</div><div class="line">const p2 = new Promise((resolve, reject) =&gt; &#123; </div><div class="line">    setTimeout(resolve, 100, &quot;two&quot;); </div><div class="line">&#125;);</div><div class="line"></div><div class="line">Promise.race([p1, p2]).then((value) =&gt; &#123;</div><div class="line">  console.log(value); // =&gt; &quot;two&quot;</div><div class="line">  // Both resolve, but p2 is faster</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
 </li>
 </ul>
-<pre><code>## 4、promise chain
-在平时实践中，我们会经常用到一种调用方式，那就是`promise chain`, **链式调用promise实例**。
+<h2 id="promise-chain"><a href="#promise-chain" class="headerlink" title="promise chain"></a>promise chain</h2><pre><code>在平时实践中，我们会经常用到一种调用方式，那就是`promise chain`, **链式调用promise实例**。
 先来看一段代码：
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">const promise = new Promisefunction(resolve, reject) =&gt; &#123;</div><div class="line">    resolve(&quot;传递给then的值&quot;);</div><div class="line">&#125;);</div><div class="line"></div><div class="line">&lt;!--实现方式1--&gt;</div><div class="line">promise.then((value) =&gt; &#123;</div><div class="line">    console.log(value);</div><div class="line">&#125;,(error) =&gt; &#123;</div><div class="line">    console.error(error);</div><div class="line">&#125;);</div><div class="line">&lt;!--实现方式2--&gt;</div><div class="line">promise.thenfunction (value) =&gt; &#123;</div><div class="line">    console.log(value);</div><div class="line">&#125;).catch((error) =&gt; &#123;</div><div class="line">    console.error(error);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
 
@@ -625,7 +624,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-count">3</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
