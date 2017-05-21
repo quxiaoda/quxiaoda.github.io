@@ -1,0 +1,864 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="learn,模板引擎," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="Handlebars模板引擎常用语法总结
+最近项目中用到了Handlebars，学习之余顺手写了一篇总结。
+
+表达式
+模板 + 数据 =&amp;gt; (模板引擎) =&amp;gt; html页面
+
+ handlebars中变量都添加双花括号来表示，访问json格式的数据可以使用.或者/, 其中变量名不可包含以下字符,如果包含则不被解析，但可以用[]来转义。1空格 ! &amp;quot; # % &amp;amp; &amp;ap">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Handlebars模板引擎常用语法总结">
+<meta property="og:url" content="http://quda.me/2017/05/21/Handlebars-instruction-manual/index.html">
+<meta property="og:site_name" content="曲达的博客">
+<meta property="og:description" content="Handlebars模板引擎常用语法总结
+最近项目中用到了Handlebars，学习之余顺手写了一篇总结。
+
+表达式
+模板 + 数据 =&amp;gt; (模板引擎) =&amp;gt; html页面
+
+ handlebars中变量都添加双花括号来表示，访问json格式的数据可以使用.或者/, 其中变量名不可包含以下字符,如果包含则不被解析，但可以用[]来转义。1空格 ! &amp;quot; # % &amp;amp; &amp;ap">
+<meta property="og:updated_time" content="2017-05-21T15:14:13.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Handlebars模板引擎常用语法总结">
+<meta name="twitter:description" content="Handlebars模板引擎常用语法总结
+最近项目中用到了Handlebars，学习之余顺手写了一篇总结。
+
+表达式
+模板 + 数据 =&amp;gt; (模板引擎) =&amp;gt; html页面
+
+ handlebars中变量都添加双花括号来表示，访问json格式的数据可以使用.或者/, 其中变量名不可包含以下字符,如果包含则不被解析，但可以用[]来转义。1空格 ! &amp;quot; # % &amp;amp; &amp;ap">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"always"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://quda.me/2017/05/21/Handlebars-instruction-manual/"/>
+
+
+
+
+
+  <title> Handlebars模板引擎常用语法总结 | 曲达的博客 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?bef3d41f50ac6f2a465d2546223b488f";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">曲达的博客</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+    
+      <p class="site-subtitle">Stay hungry. Stay foolish.</p>
+    
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://quda.me/2017/05/21/Handlebars-instruction-manual/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="曲达">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="http://p1.bpimg.com/567571/bb06935768e2849f.png">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="曲达的博客">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="曲达的博客" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Handlebars模板引擎常用语法总结
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-05-21T23:11:23+08:00">
+                2017-05-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+             <span id="/2017/05/21/Handlebars-instruction-manual/" class="leancloud_visitors" data-flag-title="Handlebars模板引擎常用语法总结">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="Handlebars模板引擎常用语法总结"><a href="#Handlebars模板引擎常用语法总结" class="headerlink" title="Handlebars模板引擎常用语法总结"></a>Handlebars模板引擎常用语法总结</h1><blockquote>
+<p>最近项目中用到了Handlebars，学习之余顺手写了一篇总结。</p>
+</blockquote>
+<h2 id="表达式"><a href="#表达式" class="headerlink" title="表达式"></a>表达式</h2><blockquote>
+<p>模板 + 数据 =&gt; (模板引擎) =&gt; html页面</p>
+</blockquote>
+<p> handlebars中变量都添加双花括号来表示，访问json格式的数据可以使用<code>.</code>或者<code>/</code>, 其中变量名不可包含以下字符,如果包含则不被解析，但可以用<code>[]</code>来转义。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">空格 ! &quot; # % &amp; &apos; ( ) * + , . / ; &lt; = &gt; @ [ \ ] ^ ` &#123; | &#125; ~</div></pre></td></tr></table></figure></p>
+<p>以上规则表明，<strong>handlebars是一种若逻辑模板引擎， “&amp;&amp;”,”||”,”!”这类逻辑判断是不能出现在表达式中的。</strong> 后面会有针对性解决方案。</p>
+<p>来看个简单示例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">//数据</div><div class="line">&#123; </div><div class="line">    title: &apos;Express&apos;, </div><div class="line">    obj:&#123;</div><div class="line">        version: &apos;v4.3&apos;, </div><div class="line">        category: &apos;node&apos;, </div><div class="line">        &quot;date~&quot;: &apos;2017&apos;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">//模板</div><div class="line">&lt;p&gt;&#123; &#123;title&#125; &#125;&lt;/p&gt;</div><div class="line">&lt;p&gt;&#123; &#123;obj.version&#125; &#125;&lt;/p&gt;</div><div class="line">&lt;p&gt;&#123; &#123;obj/category&#125; &#125;&lt;/p&gt;</div><div class="line">&lt;p&gt;&#123; &#123;obj.date~&#125; &#125;&lt;/p&gt;</div><div class="line">&lt;p&gt;&#123;&#123;ssss.obj.[date~]&#125;&#125;&lt;/p&gt;</div><div class="line"></div><div class="line">//页面结果</div><div class="line">Express</div><div class="line">v4.3</div><div class="line">node</div><div class="line">2017</div></pre></td></tr></table></figure>
+<h2 id="帮助函数（helper）"><a href="#帮助函数（helper）" class="headerlink" title="帮助函数（helper）"></a>帮助函数（helper）</h2><p>handlebars本身提供了在模板中注入帮助函数的能力，你可以调用<code>自带</code> 或 <code>自定义</code>的helper函数, 传入参数并进行逻辑处理。</p>
+<h3 id="自带的helper"><a href="#自带的helper" class="headerlink" title="自带的helper"></a>自带的helper</h3><h4 id="if-else"><a href="#if-else" class="headerlink" title="if else"></a>if else</h4><p>用法与其他模板引擎大体无差，不过重申上面提到的特殊字符， <strong>if条件中 不能有逻辑表达式，只能是变量或者值。</strong> 如果想要实现比较指定值，比如 <code>someNumber === 32</code> ,这种自带helper无法满足，需要使用后面介绍的自定义helper。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">&#123;&#123;#if author&#125;&#125;</div><div class="line">    &lt;h1&gt;&#123;&#123;firstName&#125;&#125; &#123;&#123;lastName&#125;&#125;&lt;/h1&gt;</div><div class="line">&#123;&#123;else&#125;&#125;</div><div class="line">    &lt;h1&gt;Unknown Author&lt;/h1&gt;</div><div class="line">&#123;&#123;/if&#125;&#125;</div><div class="line"></div><div class="line">&#123;&#123;#if isActive&#125;&#125;</div><div class="line">  &lt;img src=&quot;star.gif&quot; alt=&quot;Active&quot;&gt;</div><div class="line">&#123;&#123;else if isInactive&#125;&#125;</div><div class="line">  &lt;img src=&quot;cry.gif&quot; alt=&quot;Inactive&quot;&gt;</div><div class="line">&#123;&#123;/if&#125;&#125;</div></pre></td></tr></table></figure>
+<h4 id="unless"><a href="#unless" class="headerlink" title="unless"></a>unless</h4><p>默认用来处理逻辑非(!) 的语法<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">&#123;&#123;#unless license&#125;&#125;</div><div class="line">    &lt;h3 class=&quot;warning&quot;&gt;WARNING: This entry does not have a license!&lt;/h3&gt;</div><div class="line">&#123;&#123;/unless&#125;&#125;</div><div class="line"></div><div class="line">//等价于 </div><div class="line"></div><div class="line">&#123;&#123;#if license&#125;&#125;</div><div class="line">&#123;&#123;else&#125;&#125;</div><div class="line">&lt;h3 class=&quot;warning&quot;&gt;WARNING: This entry does not have a license!&lt;/h3&gt;</div><div class="line">&#123;&#123;/if&#125;&#125;</div></pre></td></tr></table></figure></p>
+<h4 id="each"><a href="#each" class="headerlink" title="each"></a>each</h4><p>见名知意，用于处理遍历数据，相当于for循环， 多用于批量生成dom。</p>
+<ul>
+<li>提供默认变量<ul>
+<li>@first/@last 当该对象为数组中第一个/最后一个时返回真值</li>
+<li>当前遍历对象对数组时，@index表示当前索引，this表示当前值</li>
+<li>当前遍历对象为对象时，@key表示当前key, this表示当前值</li>
+</ul>
+</li>
+<li>可以用相对路径的方式来获取上层的上下文，多用于多层遍历取外层遍历数据，用法见下例</li>
+<li>可以用 as |xxx|的形式给变量起别名，循环中通过别名可以引用父级变量值。当然也可以通过相对路径的方式引用父级变量。（不过亲测serv_shop项目自定义名会报错，原因未知。）</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div></pre></td><td class="code"><pre><div class="line">//数据</div><div class="line">&#123;</div><div class="line">	arrayData: [</div><div class="line">		&#123;title: &apos;one&apos;&#125;,</div><div class="line">		&#123;title: &apos;two&apos;&#125;,</div><div class="line">		&#123;title: &apos;three&apos;&#125;</div><div class="line">	]</div><div class="line">&#125;</div><div class="line"></div><div class="line">//模板</div><div class="line">&lt;ul&gt;</div><div class="line">    &#123;&#123;#each test.arrayData&#125;&#125;</div><div class="line">        &lt;li&gt;</div><div class="line">            序数：&#123;&#123;@index&#125;&#125; &lt;br&gt;</div><div class="line">            子内容：&#123;&#123;this.title&#125;&#125; &lt;br&gt;</div><div class="line">            是否第一个元素： &#123;&#123;@first&#125;&#125;</div><div class="line">        &lt;/li&gt;</div><div class="line">    &#123;&#123;/each&#125;&#125;</div><div class="line"></div><div class="line">    &#123;&#123;#each test.arrayData&#125;&#125;</div><div class="line">        &#123;&#123;#each this&#125;&#125;</div><div class="line">            &lt;li&gt;</div><div class="line">                上层上下文序数：&#123;&#123;@../index&#125;&#125;&lt;br&gt;</div><div class="line">                子内容：&#123;&#123;@key&#125;&#125; =&gt; &#123;&#123;this&#125;&#125; &lt;br&gt;</div><div class="line">                是否最后一个元素：&#123;&#123;@last&#125;&#125;</div><div class="line">            &lt;/li&gt;</div><div class="line">        &#123;&#123;/each&#125;&#125;</div><div class="line">    &#123;&#123;/each&#125;&#125;</div><div class="line">&lt;/ul&gt;</div><div class="line"></div><div class="line">//页面结果</div><div class="line">序数：0 </div><div class="line">子内容：one </div><div class="line">是否第一个元素： true</div><div class="line"></div><div class="line">序数：1 </div><div class="line">子内容：two </div><div class="line">是否第一个元素： false</div><div class="line"></div><div class="line">序数：2 </div><div class="line">子内容：three </div><div class="line">是否第一个元素： false</div><div class="line"></div><div class="line">上层上下文序数：0</div><div class="line">子内容：title =&gt; one </div><div class="line">是否最后一个元素：false</div><div class="line"></div><div class="line">上层上下文序数：1</div><div class="line">子内容：title =&gt; two </div><div class="line">是否最后一个元素：false</div><div class="line"></div><div class="line">上层上下文序数：2</div><div class="line">子内容：title =&gt; three </div><div class="line">是否最后一个元素：true</div></pre></td></tr></table></figure>
+<h4 id="with"><a href="#with" class="headerlink" title="with"></a>with</h4><p>跟js中with含义差不多，用于更换当前作用域<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div></pre></td><td class="code"><pre><div class="line">//数据</div><div class="line">[</div><div class="line">	&#123;</div><div class="line">		name: &quot;张三&quot;,</div><div class="line">		sex: &quot;0&quot;,</div><div class="line">		age: 18,</div><div class="line">		favorite: [</div><div class="line">		&#123;</div><div class="line">			name: &quot;唱歌&quot;</div><div class="line">		&#125;,</div><div class="line">		&#123;</div><div class="line">			name: &quot;篮球&quot;</div><div class="line">		&#125;</div><div class="line">		]</div><div class="line">	&#125;,</div><div class="line">	&#123;</div><div class="line">		name: &quot;李四&quot;,</div><div class="line">		sex: &quot;0&quot;,</div><div class="line">		age: 22,</div><div class="line">		favorite: [</div><div class="line">		&#123;</div><div class="line">			name: &quot;上网&quot;</div><div class="line">		&#125;,</div><div class="line">		&#123;</div><div class="line">			name: &quot;足球&quot;</div><div class="line">		&#125;</div><div class="line">		]</div><div class="line">	&#125;,</div><div class="line">	&#123;</div><div class="line">		name: &quot;妞妞&quot;,</div><div class="line">		sex: &quot;1&quot;,</div><div class="line">		age: 18,</div><div class="line">		favorite: [</div><div class="line">		&#123;</div><div class="line">			name: &quot;电影&quot;</div><div class="line">		&#125;,</div><div class="line">		&#123;</div><div class="line">			name: &quot;旅游&quot;</div><div class="line">		&#125;</div><div class="line">		]</div><div class="line">	&#125;</div><div class="line">]</div><div class="line"></div><div class="line"></div><div class="line">//模板</div><div class="line">&lt;ul&gt;</div><div class="line"></div><div class="line">    &#123;&#123;#each test&#125;&#125;</div><div class="line">        &#123;&#123;#with favorite&#125;&#125;</div><div class="line">            &#123;&#123;#each this&#125;&#125;</div><div class="line">                &lt;li&gt;&#123;&#123;name&#125;&#125;&lt;/li&gt;</div><div class="line">            &#123;&#123;/each&#125;&#125;</div><div class="line">        &#123;&#123;/with&#125;&#125;</div><div class="line">    &#123;&#123;/each&#125;&#125;</div><div class="line">    </div><div class="line">    &lt;!--等价于--&gt;</div><div class="line">    </div><div class="line">    &#123;&#123;#each test&#125;&#125;</div><div class="line">        &#123;&#123;#each this.favorite&#125;&#125;</div><div class="line">            &lt;li&gt;&#123;&#123;name&#125;&#125;&lt;/li&gt;</div><div class="line">        &#123;&#123;/each&#125;&#125;</div><div class="line">    &#123;&#123;/each&#125;&#125;</div><div class="line">&lt;/ul&gt;</div><div class="line"></div><div class="line">//页面结果</div><div class="line">唱歌</div><div class="line">篮球</div><div class="line">上网</div><div class="line">足球</div><div class="line">电影</div><div class="line">旅游</div><div class="line"></div><div class="line">唱歌</div><div class="line">篮球</div><div class="line">上网</div><div class="line">足球</div><div class="line">电影</div><div class="line">旅游</div></pre></td></tr></table></figure></p>
+<h3 id="自定义helper"><a href="#自定义helper" class="headerlink" title="自定义helper"></a>自定义helper</h3><p>当以上自带的helper无法满足需求的时候，比如<code>someNum === 32</code>，<code>each的索引默认从零开始，现在需要从1开始</code>，等等诸如此类的需求自定义helper你值得拥有，它可以让你用Handlebars.js来处理任何数据！</p>
+<p>自定义helper分两类：<code>行级helper</code>, <code>块级helper</code>。他们之间的一个显著区别就是helper函数体是否带有<code>options</code>参数。下面分别来详细介绍。</p>
+<h4 id="行级helper"><a href="#行级helper" class="headerlink" title="行级helper"></a>行级helper</h4><p>行级helper多用于处理数据，类似于管道，将变量传入自定义函数最终按照一定逻辑输出。（试试多变量的情况）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">//数据如上例</div><div class="line"></div><div class="line">//模板</div><div class="line">&lt;div&gt;</div><div class="line">    &#123;&#123;#each test&#125;&#125;</div><div class="line">        &lt;p&gt;&#123;&#123;name&#125;&#125;: &#123;&#123;transformat sex&#125;&#125;&lt;/p&gt;</div><div class="line">    &#123;&#123;/each&#125;&#125;</div><div class="line">&lt;/div&gt;</div><div class="line"></div><div class="line">//注册一个翻译用的Helper，0翻译成男，1翻译成女</div><div class="line">Handlebars.registerHelper(&quot;transformat&quot;,function(value)&#123;</div><div class="line">  if(value==0)&#123;</div><div class="line">    return &quot;男&quot;;</div><div class="line">  &#125;else if(value==1)&#123;</div><div class="line">    return &quot;女&quot;;</div><div class="line">  &#125;</div><div class="line">&#125;);</div><div class="line"></div><div class="line">//页面结果</div><div class="line">张三： 男</div><div class="line">李四： 男</div><div class="line">妞妞： 女</div></pre></td></tr></table></figure></p>
+<h4 id="块级helper"><a href="#块级helper" class="headerlink" title="块级helper"></a>块级helper</h4><p>块级helper用于处理更加复杂的if判断逻辑，满足条件执行if区块，否则执行else区块。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">//实现一个比较的helper</div><div class="line"></div><div class="line">//数据沿用上例</div><div class="line"></div><div class="line">//模板</div><div class="line">&lt;div&gt;</div><div class="line">    &#123;&#123;#each test&#125;&#125;</div><div class="line">        &#123;&#123;#compare age 20&#125;&#125;</div><div class="line">            &#123;&#123;name&#125;&#125; is large than 20.</div><div class="line">        &#123;&#123;else&#125;&#125;</div><div class="line">            &#123;&#123;name&#125;&#125; is less than 20.</div><div class="line">        &#123;&#123;/compare&#125;&#125;</div><div class="line">    &#123;&#123;/each&#125;&#125;</div><div class="line">&lt;/div&gt;</div><div class="line"></div><div class="line"></div><div class="line">//helper</div><div class="line"></div><div class="line"> //注册一个比较大小的Helper,判断v1是否大于v2</div><div class="line">Handlebars.registerHelper(&quot;compare&quot;,function(v1,v2,options)&#123;</div><div class="line">  if(v1&gt;v2)&#123;</div><div class="line">    //满足添加继续执行</div><div class="line">    return options.fn(this);</div><div class="line">  &#125;else&#123;</div><div class="line">    //不满足条件执行&#123;&#123;else&#125;&#125;部分</div><div class="line">    return options.inverse(this);</div><div class="line">  &#125;</div><div class="line">&#125;);</div><div class="line"></div><div class="line">//页面结果</div><div class="line">李四 is large than 20.</div></pre></td></tr></table></figure>
+<hr>
+<p>以上就是Handlebars模板引擎的常见用法，欢迎指正，欢迎补充~</p>
+<p><a href="http://cnodejs.org/topic/56a2e8b1cd415452622eed2d" target="_blank" rel="external">handlebars玩家指南</a></p>
+<p><a href="http://www.cnblogs.com/iyangyuan/tag/Handlebars.js/" target="_blank" rel="external">handlebars 系列 – 杨元的博客</a></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/learn/" rel="tag"># learn</a>
+          
+            <a href="/tags/模板引擎/" rel="tag"># 模板引擎</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/04/06/compare-ajax-s-GET-and-POST/" rel="next" title="GET vs POST">
+                <i class="fa fa-chevron-left"></i> GET vs POST
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://p1.bpimg.com/567571/bb06935768e2849f.png"
+               alt="曲达" />
+          <p class="site-author-name" itemprop="name">曲达</p>
+          <p class="site-description motion-element" itemprop="description">沉下去，记录点滴，每天进步一点点。涉猎JS、CSS、HTML、VUE、REACT、RN。</p>
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/quxiaoda" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Handlebars模板引擎常用语法总结"><span class="nav-number">1.</span> <span class="nav-text">Handlebars模板引擎常用语法总结</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#表达式"><span class="nav-number">1.1.</span> <span class="nav-text">表达式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#帮助函数（helper）"><span class="nav-number">1.2.</span> <span class="nav-text">帮助函数（helper）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#自带的helper"><span class="nav-number">1.2.1.</span> <span class="nav-text">自带的helper</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#if-else"><span class="nav-number">1.2.1.1.</span> <span class="nav-text">if else</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#unless"><span class="nav-number">1.2.1.2.</span> <span class="nav-text">unless</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#each"><span class="nav-number">1.2.1.3.</span> <span class="nav-text">each</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#with"><span class="nav-number">1.2.1.4.</span> <span class="nav-text">with</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#自定义helper"><span class="nav-number">1.2.2.</span> <span class="nav-text">自定义helper</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#行级helper"><span class="nav-number">1.2.2.1.</span> <span class="nav-text">行级helper</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#块级helper"><span class="nav-number">1.2.2.2.</span> <span class="nav-text">块级helper</span></a></li></ol></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">曲达</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+      <!-- UY BEGIN -->
+      <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid="></script>
+      <!-- UY END -->
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("ic2knXa3tbUDiDP63ziBDWgB-gzGzoHsz", "Sh6XaG9uOuN1BvNop9QqIEuf");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+
+</body>
+</html>
