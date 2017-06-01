@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="疑难杂症,git," />
+  <meta name="keywords" content="learn,node," />
 
 
 
@@ -84,25 +84,31 @@
 
 
 
-<meta name="description" content="解决git文件名大小写不敏感问题场景今天开发中碰到个git的坑，默认配置下，我只修改了项目下一个文件名大小写，类似abc.js =&amp;gt; Abc.js,发现提交时显示无改动记录
-原因git默认配置为忽略大小写，早先创建并已经push到远程的文件及文件夹，将名称大小写更改后，git无法检测出更改。
-解决方案更改git默认配置,命令行下执行
-1git config core.ignorecase f">
+<meta name="description" content="node异步编程–async小结
+async模块是node中用来解决回调地狱问题的经典方案
+
+引入123npm i asyncvar async = require(&amp;apos;async&amp;apos;);
+常用语法一下收集日常用到的四种场景：
+串行无关联： async.seriesseries(tasks, [callback]) 顺序执行数组、集合内的函数，当前面一个函数执行完成就会立即执行下一">
 <meta property="og:type" content="article">
-<meta property="og:title" content="fix-git-ignorecase">
-<meta property="og:url" content="http://quda.me/2017/02/15/fix-git-ignorecase/index.html">
+<meta property="og:title" content="async-brief">
+<meta property="og:url" content="http://quda.me/2017/06/01/async-brief/index.html">
 <meta property="og:site_name" content="曲达的博客">
-<meta property="og:description" content="解决git文件名大小写不敏感问题场景今天开发中碰到个git的坑，默认配置下，我只修改了项目下一个文件名大小写，类似abc.js =&amp;gt; Abc.js,发现提交时显示无改动记录
-原因git默认配置为忽略大小写，早先创建并已经push到远程的文件及文件夹，将名称大小写更改后，git无法检测出更改。
-解决方案更改git默认配置,命令行下执行
-1git config core.ignorecase f">
-<meta property="og:updated_time" content="2017-02-15T06:52:20.000Z">
+<meta property="og:description" content="node异步编程–async小结
+async模块是node中用来解决回调地狱问题的经典方案
+
+引入123npm i asyncvar async = require(&amp;apos;async&amp;apos;);
+常用语法一下收集日常用到的四种场景：
+串行无关联： async.seriesseries(tasks, [callback]) 顺序执行数组、集合内的函数，当前面一个函数执行完成就会立即执行下一">
+<meta property="og:updated_time" content="2017-06-01T12:52:20.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="fix-git-ignorecase">
-<meta name="twitter:description" content="解决git文件名大小写不敏感问题场景今天开发中碰到个git的坑，默认配置下，我只修改了项目下一个文件名大小写，类似abc.js =&amp;gt; Abc.js,发现提交时显示无改动记录
-原因git默认配置为忽略大小写，早先创建并已经push到远程的文件及文件夹，将名称大小写更改后，git无法检测出更改。
-解决方案更改git默认配置,命令行下执行
-1git config core.ignorecase f">
+<meta name="twitter:title" content="async-brief">
+<meta name="twitter:description" content="node异步编程–async小结
+async模块是node中用来解决回调地狱问题的经典方案
+
+引入123npm i asyncvar async = require(&amp;apos;async&amp;apos;);
+常用语法一下收集日常用到的四种场景：
+串行无关联： async.seriesseries(tasks, [callback]) 顺序执行数组、集合内的函数，当前面一个函数执行完成就会立即执行下一">
 
 
 
@@ -130,13 +136,13 @@
 
 
 
-  <link rel="canonical" href="http://quda.me/2017/02/15/fix-git-ignorecase/"/>
+  <link rel="canonical" href="http://quda.me/2017/06/01/async-brief/"/>
 
 
 
 
 
-  <title> fix-git-ignorecase | 曲达的博客 </title>
+  <title> async-brief | 曲达的博客 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -269,7 +275,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://quda.me/2017/02/15/fix-git-ignorecase/">
+  <link itemprop="mainEntityOfPage" href="http://quda.me/2017/06/01/async-brief/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="曲达">
@@ -293,7 +299,7 @@
             
             
               
-                fix-git-ignorecase
+                async-brief
               
             
           </h1>
@@ -308,8 +314,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-02-15T14:46:19+08:00">
-                2017-02-15
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-06-01T20:50:41+08:00">
+                2017-06-01
               </time>
             
 
@@ -328,7 +334,7 @@
 
           
           
-             <span id="/2017/02/15/fix-git-ignorecase/" class="leancloud_visitors" data-flag-title="fix-git-ignorecase">
+             <span id="/2017/06/01/async-brief/" class="leancloud_visitors" data-flag-title="async-brief">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -355,11 +361,19 @@
       
 
       
-        <h1 id="解决git文件名大小写不敏感问题"><a href="#解决git文件名大小写不敏感问题" class="headerlink" title="解决git文件名大小写不敏感问题"></a>解决git文件名大小写不敏感问题</h1><h3 id="场景"><a href="#场景" class="headerlink" title="场景"></a>场景</h3><p>今天开发中碰到个git的坑，默认配置下，我只修改了项目下一个文件名大小写，类似<code>abc.js =&gt; Abc.js</code>,发现提交时显示无改动记录</p>
-<h3 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h3><p>git默认配置为忽略大小写，早先创建并已经push到远程的文件及文件夹，将名称大小写更改后，git无法检测出更改。</p>
-<h3 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h3><p>更改git默认配置,命令行下执行</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git config core.ignorecase false</div></pre></td></tr></table></figure>
-<p>一句搞定！</p>
+        <h1 id="node异步编程–async小结"><a href="#node异步编程–async小结" class="headerlink" title="node异步编程–async小结"></a>node异步编程–async小结</h1><blockquote>
+<p>async模块是node中用来解决回调地狱问题的经典方案</p>
+</blockquote>
+<h3 id="引入"><a href="#引入" class="headerlink" title="引入"></a>引入</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">npm i async</div><div class="line"></div><div class="line">var async = require(&apos;async&apos;);</div></pre></td></tr></table></figure>
+<h3 id="常用语法"><a href="#常用语法" class="headerlink" title="常用语法"></a>常用语法</h3><p>一下收集日常用到的四种场景：</p>
+<h4 id="串行无关联：-async-series"><a href="#串行无关联：-async-series" class="headerlink" title="串行无关联： async.series"></a>串行无关联： <code>async.series</code></h4><p>series(tasks, [callback]) 顺序执行数组、集合内的函数，当前面一个函数执行完成就会立即执行下一个函数，如果函数触发了错误，可以在callback函数中验证，否则会一直执行完成tasks</p>
+<p>task可以是数组也可以是对象，返回的结果结构与之相对应<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">var async = require(&apos;async&apos;);</div><div class="line">console.time(&apos;series&apos;);</div><div class="line">async.series(&#123;</div><div class="line">    one: function(callback) &#123;</div><div class="line">        callback(null, &apos;one&apos;);//callback(&apos;i am err&apos;,&apos;one&apos;);异常处理</div><div class="line">    &#125;,</div><div class="line">    two: function(callback) &#123;</div><div class="line">        callback(null, &apos;two&apos;);</div><div class="line"></div><div class="line">    &#125;,</div><div class="line">&#125;, function(error, result) &#123;</div><div class="line">    //最后结果</div><div class="line">    console.log(&apos;error: &apos; + error);</div><div class="line">    console.log(&apos;result: &apos; + result);</div><div class="line">    console.timeEnd(&apos;series&apos;);</div><div class="line">&#125;);</div><div class="line"></div><div class="line">//输出</div><div class="line">error: null</div><div class="line">result: [object Object]</div><div class="line">series: 4.472ms</div></pre></td></tr></table></figure></p>
+<h4 id="串行有关-async-waterfall"><a href="#串行有关-async-waterfall" class="headerlink" title="串行有关: async.waterfall"></a>串行有关: <code>async.waterfall</code></h4><p>waterfall(tasks, [callback])　　tasks依次运行,前一个函数的回调会作为后一个函数的参数，如果有任何任务通过一个错误的回调，下一个函数不执行</p>
+<p>其中tasks通常是执行操作（function）的集合，每一个function都要有一个参数<code>callback</code>, 这个参数是必须要有的，而且如有多个参数，这个参数要放在最后。 callback的作用是执行完当前操作后通过调用callback进入下一个操作，你可以通过callback给下一个执行传递参数，例如下一个执行时<code>function(arg1, arg2, callback)</code>, 你在第一个执行完成时调用 <code>callback(null, arg1, arg2)</code>,  <code>null</code>代表没有err, 这是就会自动调用下一个执行了，如果你传入了err, 就会跳过其余的执行直接到最终的回调中。</p>
+<p>task只能是数组形式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">async.waterfall([</div><div class="line">  function(callback)&#123;</div><div class="line">      callback(null, &apos;one&apos;, &apos;two&apos;);</div><div class="line">  &#125;,</div><div class="line">  function(arg1, arg2, callback)&#123;</div><div class="line">   // arg1 now equals &apos;one&apos; and arg2 nowequals &apos;two&apos;</div><div class="line">      callback(null, &apos;three&apos;);</div><div class="line"> &#125;,</div><div class="line">  function(arg1, callback)&#123;</div><div class="line">     // arg1 now equals &apos;three&apos;</div><div class="line">     callback(null, &apos;done&apos;);</div><div class="line"> &#125;</div><div class="line"> ], function (err, result) &#123;</div><div class="line">    // result now equals &apos;done&apos;    </div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h4 id="并行无限制：async-parallel"><a href="#并行无限制：async-parallel" class="headerlink" title="并行无限制：async.parallel"></a>并行无限制：<code>async.parallel</code></h4><p>parallel(tasks, [callback])　　并行执行数组、集合内的方法，不用等到前一个函数执行完再执行下一个函数，如果函数触发了错误，可以在callback函数中验证,<br>返回结果的顺序跟tasks顺序相同，与相应先后无关。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">async</span>.parallel(</div><div class="line">[</div><div class="line">  <span class="function"><span class="keyword">function</span>(<span class="params">callback</span>) </span>&#123;</div><div class="line">    setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">          callback(<span class="literal">null</span>, <span class="string">'one'</span>);</div><div class="line">        &#125;,</div><div class="line">    <span class="number">200</span>);</div><div class="line">  &#125;,</div><div class="line">  <span class="function"><span class="keyword">function</span>(<span class="params">callback</span>) </span>&#123;</div><div class="line">    setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">        callback(<span class="literal">null</span>, <span class="string">'two'</span>);</div><div class="line">    &#125;,</div><div class="line">    <span class="number">100</span>);</div><div class="line">  &#125;</div><div class="line">],</div><div class="line"> <span class="comment">// optional callback</span></div><div class="line"> <span class="function"><span class="keyword">function</span>(<span class="params">err, results</span>) </span>&#123;</div><div class="line">    <span class="comment">// the results array will equal ['one','two'] even thoug</span></div><div class="line">    <span class="comment">// the second function had a shorter             </span></div><div class="line">    timeout</div><div class="line"> &#125;</div><div class="line">);</div></pre></td></tr></table></figure></p>
+<h4 id="并行有限制：async-parallelLimit"><a href="#并行有限制：async-parallelLimit" class="headerlink" title="并行有限制：async.parallelLimit"></a>并行有限制：<code>async.parallelLimit</code></h4><p>parallelLimit(tasks, limit, [callback])　　和上一条的用法一样，只是多了一个任务数量限制，最多允许多少个任务在并行执行</p>
 
       
     </div>
@@ -383,9 +397,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/疑难杂症/" rel="tag"># 疑难杂症</a>
+            <a href="/tags/learn/" rel="tag"># learn</a>
           
-            <a href="/tags/git/" rel="tag"># git</a>
+            <a href="/tags/node/" rel="tag"># node</a>
           
         </div>
       
@@ -394,8 +408,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/02/10/js-Promise/" rel="next" title="JS-Promise">
-                <i class="fa fa-chevron-left"></i> JS-Promise
+              <a href="/2017/05/21/Handlebars-instruction-manual/" rel="next" title="Handlebars模板引擎常用语法总结">
+                <i class="fa fa-chevron-left"></i> Handlebars模板引擎常用语法总结
               </a>
             
           </div>
@@ -403,10 +417,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/03/16/optimize-page-render/" rel="prev" title="优化浏览器渲染效率的几条实践">
-                优化浏览器渲染效率的几条实践 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -556,7 +566,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#解决git文件名大小写不敏感问题"><span class="nav-number">1.</span> <span class="nav-text">解决git文件名大小写不敏感问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#场景"><span class="nav-number">1.0.1.</span> <span class="nav-text">场景</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#原因"><span class="nav-number">1.0.2.</span> <span class="nav-text">原因</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解决方案"><span class="nav-number">1.0.3.</span> <span class="nav-text">解决方案</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#node异步编程–async小结"><span class="nav-number">1.</span> <span class="nav-text">node异步编程–async小结</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#引入"><span class="nav-number">1.0.1.</span> <span class="nav-text">引入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#常用语法"><span class="nav-number">1.0.2.</span> <span class="nav-text">常用语法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#串行无关联：-async-series"><span class="nav-number">1.0.2.1.</span> <span class="nav-text">串行无关联： async.series</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#串行有关-async-waterfall"><span class="nav-number">1.0.2.2.</span> <span class="nav-text">串行有关: async.waterfall</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#并行无限制：async-parallel"><span class="nav-number">1.0.2.3.</span> <span class="nav-text">并行无限制：async.parallel</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#并行有限制：async-parallelLimit"><span class="nav-number">1.0.2.4.</span> <span class="nav-text">并行有限制：async.parallelLimit</span></a></li></ol></li></ol></li></ol></li></ol></div>
             
 
           </div>
